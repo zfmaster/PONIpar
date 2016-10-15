@@ -1,6 +1,5 @@
 <?php
 
-declare(encoding='UTF-8');
 namespace PONIpar;
 
 /*
@@ -52,4 +51,4 @@ class ElementNotFoundException extends PONIparException { }
  */
 class TooManyElementsFoundException extends PONIparException { }
 
-?>
+

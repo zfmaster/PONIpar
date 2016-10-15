@@ -1,6 +1,5 @@
 <?php
 
-declare(encoding='UTF-8');
 namespace PONIpar;
 
 /*
@@ -36,4 +35,4 @@ foreach (array(
 	require_once "$part.php";
 }
 
-?>
+

@@ -1,6 +1,5 @@
 <?php
 
-declare(encoding = 'UTF-8');
 namespace PONIpar;
 
 use DOMDocument;
@@ -644,4 +643,4 @@ class Product
     }
 }
 
-?>
+

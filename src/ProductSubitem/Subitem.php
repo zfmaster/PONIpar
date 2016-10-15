@@ -1,6 +1,6 @@
 <?php
 
-declare(encoding='UTF-8');
+
 namespace PONIpar\ProductSubitem;
 
 use PONIpar\ElementNotFoundException;
@@ -156,4 +156,4 @@ abstract class Subitem {
 
 }
 
-?>
+

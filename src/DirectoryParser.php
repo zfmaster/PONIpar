@@ -1,6 +1,5 @@
 <?php
 
-declare(encoding='UTF-8');
 namespace PONIpar;
 
 /*
@@ -123,4 +122,4 @@ class DirectoryParser {
 
 }
 
-?>
+

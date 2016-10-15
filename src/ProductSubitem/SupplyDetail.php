@@ -1,6 +1,6 @@
 <?php
 
-declare(encoding='UTF-8');
+
 namespace PONIpar\ProductSubitem;
 
 /*
@@ -141,4 +141,4 @@ class SupplyDetail extends Subitem {
 
 }
 
-?>
+

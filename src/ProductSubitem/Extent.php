@@ -1,6 +1,6 @@
 <?php
 
-declare(encoding='UTF-8');
+
 namespace PONIpar\ProductSubitem;
 
 use PONIpar\ProductSubitem\Subitem;
@@ -162,4 +162,4 @@ class Extent extends Subitem {
 
 };
 
-?>
+
