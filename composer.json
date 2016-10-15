@@ -15,6 +15,11 @@
             "name": "Kevin Jantzer",
             "email": "kevin.jantzer@blackstoneaudio.com",
 			"role": "Developer"
+        },
+        {
+            "name": "Bogdan Podlesnii",
+            "email": "bogdan.podlesnii@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
