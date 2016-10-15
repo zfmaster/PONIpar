@@ -1,10 +1,10 @@
 {
-    "name": "kjantzer/ponipar",
+    "name": "zfmaster/ponipar",
     "description": "Stream-based PHP ONIX parser library.",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "type": "library",
     "keywords": ["ONIX", "XML", "parser", "editeur"],
-    "homepage": "https://github.com/kjantzer/PONIpar",
+    "homepage": "https://github.com/zfmaster/PONIpar",
     "authors": [
         {
             "name": " Tim Weber",
