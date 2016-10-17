@@ -4,6 +4,7 @@ namespace PONIpar;
 
 use DOMDocument;
 use DOMNode;
+use PONIpar\ProductSubitem\Contributor;
 use PONIpar\ProductSubitem\OtherText;
 use PONIpar\ProductSubitem\Subject;
 
@@ -186,7 +187,6 @@ class Product
      *                      ProductIdentifierProductSubitem’s TYPE_* constants
      *                      is recommended.
      * @return string The found product identifier.
-     * @throws ElementNotFoundException
      */
     public function getIdentifier($type)
     {
@@ -196,7 +196,7 @@ class Product
                 return $id->getValue();
             }
         }
-        throw new ElementNotFoundException("no identifier of type $type found");
+        return null;
     }
 
 
@@ -263,7 +263,7 @@ class Product
     /**
      * Get Edition
      *
-     * @return array of Contributor objects
+     * @return Contributor[]
      */
     public function getContributors()
     {
@@ -331,7 +331,7 @@ class Product
     /**
      * Get Texts
      *
-     * @return array of OtherText objects
+     * @return OtherText[]
      */
     public function getTexts()
     {
