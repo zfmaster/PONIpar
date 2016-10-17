@@ -607,7 +607,8 @@ class XMLHandler
         // make sure these are captilized
         'title'                => 'Title',
         'series'               => 'Series',
-        'othertext'            => 'OtherText'
+        'othertext'            => 'OtherText',
+        'mainsubject'          => 'Mainsubject'
     );
 
     /**
