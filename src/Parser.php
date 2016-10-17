@@ -2,14 +2,14 @@
 
 namespace PONIpar;
 
-/*
-   This file is part of the PONIpar PHP Onix Parser Library.
-   Copyright (c) 2012, [di] digitale informationssysteme gmbh
-   All rights reserved.
+	/*
+       This file is part of the PONIpar PHP Onix Parser Library.
+       Copyright (c) 2012, [di] digitale informationssysteme gmbh
+       All rights reserved.
 
-   The software is provided under the terms of the new (3-clause) BSD license.
-   Please see the file LICENSE for details.
-*/
+       The software is provided under the terms of the new (3-clause) BSD license.
+       Please see the file LICENSE for details.
+    */
 
 /**
  * The main class that users of PONIpar should interact with.
@@ -23,6 +23,13 @@ class Parser {
 	 * to 10KiB.
 	 */
 	protected $chunksize = 10240;
+
+	/**
+	 *
+	 * Limit of chunks. Can be used for processing small amount items. Can be used for testing purposes.
+	 * Leave null for parsing all chunks till the end of the file
+	 */
+	protected $chunksLimit = null;
 
 	/**
 	 * The stream we’re reading from. Is null if none has been defined yet.
@@ -44,6 +51,7 @@ class Parser {
 	 *
 	 * @param  resource $stream The stream to use.
 	 * @return Parser $this
+	 * @throws InternalException
 	 */
 	protected function setStream($stream) {
 		// Sanity checks.
@@ -65,8 +73,8 @@ class Parser {
 
 	/**
 	 * Run the parsing process until the stream is empty.
-	 *
 	 * @return Parser $this
+	 * @throws ReadException
 	 */
 	public function parse() {
 		// Check if we have a stream at all.
@@ -77,19 +85,25 @@ class Parser {
 		$xml = $this->xmlhandler;
 		$productHandler = $this->productHandler;
 		$xml->setProductHandler(
-			is_callable($productHandler)
-			? function ($product) use ($productHandler) {
-				call_user_func($productHandler, $product);
-			}
-			: null
+				is_callable($productHandler)
+						? function ($product) use ($productHandler) {
+					call_user_func($productHandler, $product);
+				}
+						: null
 		);
+		$parsedItems = 0;
 		// Read chunks and feed them to the XMLHandler.
-		while (!feof($this->stream)) {
+		while (!feof($this->stream) && (!is_null($this->chunksLimit) && $this->chunksLimit > $parsedItems++)) {
 			$chunk = fread($this->stream, $this->chunksize);
 			$xml->parse($chunk);
 		}
-		// Tell the XMLHandler that there’s nothing left.
-		$xml->parse('', true);
+
+		// If parsing is finished because of end of file and not by the chunksLimit
+		if (feof($this->stream)) {
+			// Tell the XMLHandler that there’s nothing left.
+			$xml->parse('', true);
+		}
+
 		// Finish.
 		return $this;
 	}
@@ -101,6 +115,7 @@ class Parser {
 	 *                      Product instance as its first parameter. Can be set
 	 *                      to null to remove a possibly set handler.
 	 * @return Parser $this
+	 * @throws InternalException
 	 */
 	public function setProductHandler($cb) {
 		if (!(is_callable($cb) || ($cb === null))) {
@@ -116,6 +131,7 @@ class Parser {
 	 * @param  string $name The file’s name. Since it will be directly passed to
 	 *                      fopen(), PHP’s stream wrappers are supported.
 	 * @return Parser $this
+	 * @throws ReadException
 	 */
 	public function useFile($name) {
 		// Open the file.
@@ -157,6 +173,7 @@ class Parser {
 	 *
 	 * @param  string $string The string to use.
 	 * @return Parser $this
+	 * @throws WriteException
 	 */
 	public function useString($string) {
 		// Open a temp stream for writing and reading.
@@ -189,10 +206,18 @@ class Parser {
 	/**
 	 * Get Sent Date of ONIX being parsed
 	 *
-	 * @return datetime
+	 * @return \Datetime
 	 */
 	public function getSentDate(){
 		return $this->xmlhandler->getSentDate();
+	}
+
+	/**
+	 * @param int|null $limit
+	 */
+	public function setChunksLimit($limit)
+	{
+		$this->chunksLimit = $limit;
 	}
 
 }
