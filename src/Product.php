@@ -7,6 +7,7 @@ use DOMNode;
 use PONIpar\ProductSubitem\Contributor;
 use PONIpar\ProductSubitem\OtherText;
 use PONIpar\ProductSubitem\Subject;
+use PONIpar\ProductSubitem\Title;
 
 /*
    This file is part of the PONIpar PHP Onix Parser Library.
@@ -250,7 +251,7 @@ class Product
     /**
      * Get Titles
      *
-     * @return array of Title objects
+     * @return Title[]
      */
     public function getTitles()
     {
