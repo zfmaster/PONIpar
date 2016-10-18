@@ -118,5 +118,5 @@ class Title extends Subitem {
 };
 
 // a provider ONIX would foundn to use camelcase tag, so support this.
-class_alias('Title', 'Title');
+//class_alias('Title', 'Title');
 

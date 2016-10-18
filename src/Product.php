@@ -570,7 +570,7 @@ class Product
     /**
      *
      * @param $scheme
-     * @return array Returns array of other all subject values
+     * @return Subject[]
      */
     public function getSubjectValues($scheme)
     {
@@ -578,6 +578,29 @@ class Product
             $subjects = $this->get('DescriptiveDetail/Subject', 'Subject');
         else
             $subjects = $this->get('Subject', 'Subject');
+
+        $values = [];
+
+        foreach ($subjects as $subject) {
+            if ($subject->getScheme() == $scheme) {
+                $values[] = $subject->getValue();
+            }
+        }
+
+        return $values;
+    }
+
+    /**
+     *
+     * @param $scheme
+     * @return Subject[]
+     */
+    public function getMainSubjectValues($scheme)
+    {
+        if ($this->version >= '3.0')
+            $subjects = $this->get('DescriptiveDetail/MainSubject', 'Subject');
+        else
+            $subjects = $this->get('MainSubject', 'Subject');
 
         $values = [];
 

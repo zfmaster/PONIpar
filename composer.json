@@ -41,6 +41,7 @@
                 "src/ProductSubitem/Prize.php",
 				"src/ProductSubitem/SupplyDetail.php",
 				"src/ProductSubitem/SalesRights.php",
+				"src/Mapping/SubjectMapper.php",
 			"src/XMLHandler.php"
 		]
     },

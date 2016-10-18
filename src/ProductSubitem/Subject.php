@@ -157,6 +157,9 @@ class Subject extends Subitem {
 		parent::__construct($in);
 		
 		try{ $this->scheme = $this->_getSingleChildElementText('SubjectSchemeIdentifier'); } catch(\Exception $e) { }
+		if (!$this->scheme) {
+			try{ $this->scheme = $this->_getSingleChildElementText('MainSubjectSchemeIdentifier'); } catch(\Exception $e) { }
+		}
 		try{ $this->value = $this->_getSingleChildElementText('SubjectCode'); } catch(\Exception $e) { }
 		try {
 			$this->text = $this->_getSingleChildElementText('SubjectHeadingText');

@@ -608,7 +608,7 @@ class XMLHandler
         'title'                => 'Title',
         'series'               => 'Series',
         'othertext'            => 'OtherText',
-        'mainsubject'          => 'Mainsubject'
+        'mainsubject'          => 'MainSubject'
     );
 
     /**
