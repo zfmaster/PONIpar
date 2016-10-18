@@ -93,7 +93,7 @@ class Parser {
 		);
 		$parsedItems = 0;
 		// Read chunks and feed them to the XMLHandler.
-		while (!feof($this->stream) && (!is_null($this->chunksLimit) && $this->chunksLimit > $parsedItems++)) {
+		while (!feof($this->stream) && (is_null($this->chunksLimit) || $this->chunksLimit > $parsedItems++)) {
 			$chunk = fread($this->stream, $this->chunksize);
 			$xml->parse($chunk);
 		}
