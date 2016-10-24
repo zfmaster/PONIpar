@@ -11,8 +11,21 @@ use PONIpar\ProductSubitem\Subject;
 class SubjectMapper
 {
 
+    protected $mainCategoryMapping = array(
+        'HC'       => 'Hardcover, Softcover',
+        'TB'       => 'Taschenbuch',
+        'LBA'      => 'Zeitschrift, Loseblatt-Ausgabe',
+        'VIDEO'    => 'DVD, Video',
+        'AUDIO'    => 'Audio-CD, Kassette',
+        'SOFTWARE' => 'CD-ROM, DVD-ROM',
+        'KAL'      => 'Kalender',
+        'KTN'      => 'Karten, Globen',
+        'NONBOOK'  => 'Nonbooks, PBS'
+    );
+
     protected $mapping = array(
         Subject::SCHEME_WARENGRUPPEN_SYSTEMATIK_DES_DEUTSCHEN_BUCHHANDELS => array(
+            '1'    => 'HC',
             '1110' => 'HC/Belletristik/Erzählende Literatur',
             '1111' => 'HC/Belletristik/Hauptwerk vor 1945',
             '1112' => 'HC/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -526,6 +539,7 @@ class SubjectMapper
             '1985' => 'HC/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '1986' => 'HC/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '1989' => 'HC/Sachbücher/Natur, Technik/Sonstiges',
+            '2'    => 'TB',
             '2110' => 'TB/Belletristik/Erzählende Literatur',
             '2111' => 'TB/Belletristik/Hauptwerk vor 1945',
             '2112' => 'TB/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -1039,6 +1053,7 @@ class SubjectMapper
             '2985' => 'TB/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '2986' => 'TB/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '2989' => 'TB/Sachbücher/Natur, Technik/Sonstiges',
+            '3'    => 'LBA',
             '3110' => 'LBA/Belletristik/Erzählende Literatur',
             '3111' => 'LBA/Belletristik/Hauptwerk vor 1945',
             '3112' => 'LBA/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -1552,6 +1567,7 @@ class SubjectMapper
             '3985' => 'LBA/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '3986' => 'LBA/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '3989' => 'LBA/Sachbücher/Natur, Technik/Sonstiges',
+            '4'    => 'VIDEO',
             '4110' => 'VIDEO/Belletristik/Erzählende Literatur',
             '4111' => 'VIDEO/Belletristik/Hauptwerk vor 1945',
             '4112' => 'VIDEO/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -2065,6 +2081,7 @@ class SubjectMapper
             '4985' => 'VIDEO/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '4986' => 'VIDEO/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '4989' => 'VIDEO/Sachbücher/Natur, Technik/Sonstiges',
+            '5'    => 'AUDIO',
             '5110' => 'AUDIO/Belletristik/Erzählende Literatur',
             '5111' => 'AUDIO/Belletristik/Hauptwerk vor 1945',
             '5112' => 'AUDIO/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -2578,6 +2595,7 @@ class SubjectMapper
             '5985' => 'AUDIO/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '5986' => 'AUDIO/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '5989' => 'AUDIO/Sachbücher/Natur, Technik/Sonstiges',
+            '6'    => 'SOFTWARE',
             '6110' => 'SOFTWARE/Belletristik/Erzählende Literatur',
             '6111' => 'SOFTWARE/Belletristik/Hauptwerk vor 1945',
             '6112' => 'SOFTWARE/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -3091,6 +3109,7 @@ class SubjectMapper
             '6985' => 'SOFTWARE/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '6986' => 'SOFTWARE/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '6989' => 'SOFTWARE/Sachbücher/Natur, Technik/Sonstiges',
+            '7'    => 'KAL',
             '7110' => 'KAL/Belletristik/Erzählende Literatur',
             '7111' => 'KAL/Belletristik/Hauptwerk vor 1945',
             '7112' => 'KAL/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -3604,6 +3623,7 @@ class SubjectMapper
             '7985' => 'KAL/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '7986' => 'KAL/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '7989' => 'KAL/Sachbücher/Natur, Technik/Sonstiges',
+            '8'    => 'KTN',
             '8110' => 'KTN/Belletristik/Erzählende Literatur',
             '8111' => 'KTN/Belletristik/Hauptwerk vor 1945',
             '8112' => 'KTN/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -4117,6 +4137,7 @@ class SubjectMapper
             '8985' => 'KTN/Sachbücher/Natur, Technik/Natur, Gesellschaft/Allgemeines, Nachschlagewerke',
             '8986' => 'KTN/Sachbücher/Natur, Technik/Technik/Allgemeines, Nachschlagewerke',
             '8989' => 'KTN/Sachbücher/Natur, Technik/Sonstiges',
+            '9'    => 'NONBOOK',
             '9110' => 'NONBOOK/Belletristik/Erzählende Literatur',
             '9111' => 'NONBOOK/Belletristik/Hauptwerk vor 1945',
             '9112' => 'NONBOOK/Belletristik/Gegenwartsliteratur (ab 1945)',
@@ -4637,12 +4658,20 @@ class SubjectMapper
     /**
      * @param $subjectType
      * @param $key
+     * @param bool $mapTopCategory
      * @return null|string
      */
-    public function getMapping($subjectType, $key)
+    public function getMapping($subjectType, $key, $mapTopCategory = false)
     {
         if (isset($this->mapping[$subjectType]) && isset($this->mapping[$subjectType][$key])) {
-            return $this->mapping[$subjectType][$key];
+            $mapping = $this->mapping[$subjectType][$key];
+            if ($mapTopCategory) {
+                $categories = explode('/', $mapping);
+                if (isset($this->mainCategoryMapping[$categories[0]])) {
+                    $mapping = mb_ereg_replace($categories[0], $this->mainCategoryMapping[$categories[0]], $mapping);
+                }
+            }
+            return $mapping;
         }
         return null;
     }
