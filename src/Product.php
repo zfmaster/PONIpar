@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMNode;
 use PONIpar\ProductSubitem\Contributor;
 use PONIpar\ProductSubitem\OtherText;
+use PONIpar\ProductSubitem\ProductIdentifier;
 use PONIpar\ProductSubitem\Subject;
 use PONIpar\ProductSubitem\Title;
 
@@ -180,10 +181,7 @@ class Product
      *
      * ONIX allows for multiple identifiers per product. This method retrieves
      * all <ProductIdentifier> subitems and returns the one with the given type.
-     * If there is no identifier with that type, an ElementNotFoundException
-     * will be thrown.
      *
-     * @todo   Support passing a name for proprietary identifiers.
      * @param  string $type The type of identifier to search for. Using one of
      *                      ProductIdentifierProductSubitem’s TYPE_* constants
      *                      is recommended.
@@ -191,6 +189,7 @@ class Product
      */
     public function getIdentifier($type)
     {
+        /** @var ProductIdentifier[]  $ids */
         $ids = $this->get('ProductIdentifier');
         foreach ($ids as $id) {
             if ($id->getType() == $type) {
@@ -198,6 +197,33 @@ class Product
             }
         }
         return null;
+    }
+
+    /**
+     * Get all product identifiers filtered by specific type
+     *
+     * ONIX allows for multiple identifiers per product. This method retrieves
+     * all <ProductIdentifier> subitems and returns all of them with the given type
+     * as IDTypeName => value pairs
+     *
+     * @param  string $type The type of identifier to search for. Using one of
+     *                      ProductIdentifierProductSubitem’s TYPE_* constants
+     *                      is recommended.
+     * @return array
+     */
+    public function getIdentifiers($type)
+    {
+        /** @var ProductIdentifier[]  $ids */
+        $ids = $this->get('ProductIdentifier');
+        $identifiers = array();
+
+        foreach ($ids as $id) {
+            if ($id->getType() == $type) {
+                $identifiers[$id->getTypeName()] = $id->getValue();
+            }
+        }
+
+        return $identifiers;
     }
 
 
